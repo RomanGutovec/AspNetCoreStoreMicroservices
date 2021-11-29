@@ -64,6 +64,8 @@ namespace Catalog.API
             {
                 endpoints.MapControllers();
             });
+
+            CatalogContextSeeder.PrepPopulation(app, env.IsProduction());
         }
     }
 }

@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Catalog.API.Entities;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
 namespace Catalog.API.Data
 {
     public class CatalogContextSeeder
     {
-        public static void SeedData(IMongoCollection<Product> productCollection)
+        public static void PrepPopulation(IApplicationBuilder app, bool isProd)
         {
-            var isProductCollectionExists = productCollection.Find(p => true).Any();
-            if (!isProductCollectionExists)
-            {
-                productCollection.InsertManyAsync(GetPreconfiguredProducts());
-            }
+            using var serviceScope = app.ApplicationServices.CreateScope();
+            SeedData(serviceScope.ServiceProvider.GetService<ICatalogContext>(), isProd);
+        }
 
+        public static void SeedData(ICatalogContext catalogContext, bool isProd)
+        {
+            var isProductCollectionExists = catalogContext.Products.Find(p => true).Any();
+            if (!isProductCollectionExists && !isProd)
+            {
+                catalogContext.Products.InsertManyAsync(GetPreconfiguredProducts());
+            }
         }
 
         private static IEnumerable<Product> GetPreconfiguredProducts()
