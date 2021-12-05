@@ -26,7 +26,7 @@ namespace Basket.API.Controllers
             return Ok(basket ?? new ShoppingCart(userName));
         }
 
-        [HttpPut("{id}", Name = "UpdateBasket")]
+        [HttpPut(Name = "UpdateBasket")]
         [ProducesResponseType(typeof(ShoppingCart), StatusCodes.Status200OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
         {
