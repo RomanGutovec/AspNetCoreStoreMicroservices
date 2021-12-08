@@ -1,4 +1,4 @@
-name: .NET
+name: WebStoreServicesAndWebApps
 
 on:
   push:
@@ -20,9 +20,9 @@ jobs:
           dotnet-version: 5.0.x
 
       - name: Restore dependencies 🧑‍🔧
-        run: dotnet restore src/Services/Catalog/Catalog.API/
+        run: dotnet restore src/Services/Basket/Basket.API/
 
       - name: Build 🧑‍🚀
-        run: dotnet build --no-restore src/Services/Catalog/Catalog.API/
+        run: dotnet build --no-restore src/Services/Basket/Basket.API/
       # - name: Test to be done
       # run: dotnet test --no-build --verbosity normal
