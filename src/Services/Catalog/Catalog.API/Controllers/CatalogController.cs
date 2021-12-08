@@ -27,7 +27,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            var products = await productRepository.GetProductsAsync();
+            var products = await productRepository.GetProducts();
             return Ok(products);
         }
 
@@ -37,7 +37,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Product>> GetProduct(string id)
         {
-            var product = await productRepository.GetProductAsync(id);
+            var product = await productRepository.GetProduct(id);
             if (product is null)
             {
                 logger.LogError($"Product with id: {id} was not found");
@@ -51,7 +51,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> CreateProduct([FromBody] Product product)
         {
-            await productRepository.CreateProductAsync(product);
+            await productRepository.CreateProduct(product);
             return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
         }
 
@@ -59,7 +59,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Product>> UpdateProduct([FromBody] Product product)
         {
-            return Ok(await productRepository.UpdateProductAsync(product));
+            return Ok(await productRepository.UpdateProduct(product));
         }
 
         [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
@@ -67,7 +67,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Product>> DeleteProduct(string id)
         {
-            var isDeleted = await productRepository.DeleteProductAsync(id);
+            var isDeleted = await productRepository.DeleteProduct(id);
             if (isDeleted)
             {
                 logger.LogError($"Product with id: {id} was not found");
@@ -83,7 +83,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategory(string category)
         {
-            var product = await productRepository.GetProductByCategoryAsync(category);
+            var product = await productRepository.GetProductByCategory(category);
             if (product is null)
             {
                 logger.LogError($"Product with category: {category} was not found");

@@ -6,12 +6,12 @@ namespace Catalog.API.Repositories.Interfaces
 {
     public interface IProductRepository
     {
-        Task<List<Product>> GetProductsAsync();
-        Task<Product> GetProductAsync(string id);
-        Task<List<Product>> GetProductByNameAsync(string name);
-        Task<List<Product>> GetProductByCategoryAsync(string categoryName);
-        Task CreateProductAsync(Product product);
-        Task<bool> UpdateProductAsync(Product product);
-        Task<bool> DeleteProductAsync(string id);
+        Task<List<Product>> GetProducts();
+        Task<Product> GetProduct(string id);
+        Task<List<Product>> GetProductByName(string name);
+        Task<List<Product>> GetProductByCategory(string categoryName);
+        Task CreateProduct(Product product);
+        Task<bool> UpdateProduct(Product product);
+        Task<bool> DeleteProduct(string id);
     }
 }

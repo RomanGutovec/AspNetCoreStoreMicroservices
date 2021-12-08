@@ -17,48 +17,48 @@ namespace Catalog.API.Repositories
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public Task<List<Product>> GetProductsAsync()
+        public async Task<List<Product>> GetProducts()
         {
-            return context
+            return await context
                             .Products
                             .Find(p => true)
                             .ToListAsync();
         }
 
-        public Task<Product> GetProductAsync(string id)
+        public async Task<Product> GetProduct(string id)
         {
-            return context
+            return await context
                            .Products
                            .Find(p => p.Id == id)
                            .FirstOrDefaultAsync();
         }
 
-        public Task<List<Product>> GetProductByNameAsync(string name)
+        public async Task<List<Product>> GetProductByName(string name)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.ElemMatch(p => p.Name, name);
 
-            return context
+            return await context
                             .Products
                             .Find(filter)
                             .ToListAsync();
         }
 
-        public Task<List<Product>> GetProductByCategoryAsync(string categoryName)
+        public async Task<List<Product>> GetProductByCategory(string categoryName)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Category, categoryName);
 
-            return context
+            return await context
                             .Products
                             .Find(filter)
                             .ToListAsync();
         }
 
-        public Task CreateProductAsync(Product product)
+        public async Task CreateProduct(Product product)
         {
-            return context.Products.InsertOneAsync(product);
+            await context.Products.InsertOneAsync(product);
         }
 
-        public async Task<bool> UpdateProductAsync(Product product)
+        public async Task<bool> UpdateProduct(Product product)
         {
             var updateResult = await context
                                         .Products
@@ -68,7 +68,7 @@ namespace Catalog.API.Repositories
                     && updateResult.ModifiedCount > 0;
         }
 
-        public async Task<bool> DeleteProductAsync(string id)
+        public async Task<bool> DeleteProduct(string id)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
 
