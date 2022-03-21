@@ -59,6 +59,7 @@ namespace Basket.API.Controllers
             return Ok();
         }
 
+        [Route("[action]")]
         [HttpPost(Name = "CheckoutBasket")]
         [ProducesResponseType(typeof(void), StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
