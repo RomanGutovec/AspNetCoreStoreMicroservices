@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -22,7 +23,7 @@ namespace Ordering.Application.Orders.Queries.GetOrdersList
 
         public async Task<OrdersListVm> Handle(GetOrdersListQuery request, CancellationToken cancellationToken)
         {
-            var orders = await dbContext.Orders.ProjectTo<OrderDto>(mapper.ConfigurationProvider).ToListAsync(cancellationToken);
+            var orders = await dbContext.Orders.Where(x => x.UserName == request.UserName).ProjectTo<OrderDto>(mapper.ConfigurationProvider).ToListAsync(cancellationToken);
             return new OrdersListVm { OrdersList = orders };
         }
     }
