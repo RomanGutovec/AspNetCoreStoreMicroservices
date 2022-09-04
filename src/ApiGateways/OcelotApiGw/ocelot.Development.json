@@ -82,7 +82,7 @@
         "Limit": 1
       }
     },
-    //Discount API
+    //Discount API 
     {
       "DownstreamPathTemplate": "/api/v1/Discount/{productName}",
       "DownstreamScheme": "http",
