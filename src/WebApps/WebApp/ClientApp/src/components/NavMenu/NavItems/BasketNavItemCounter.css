@@ -1,0 +1,27 @@
+.basket-container {
+    position: relative;
+    display: inline-block;
+    width: 30px; /* or any width that makes sense in your layout */
+    height: 30px; /* or any height that makes sense in your layout */
+}
+
+.basket-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Optional: this makes sure the aspect ratio of the image is preserved */
+}
+
+.product-count {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    background: red;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+}

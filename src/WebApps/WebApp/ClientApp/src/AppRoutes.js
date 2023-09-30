@@ -1,25 +1,41 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
-import { Home } from "./components/Home";
-import { ProductsPage } from "./components/products/ProductsPage"
+import {Counter} from "./components/Counter";
+import Home from "./components/Home/Home";
+import {ProductsPage} from "./components/Products/ProductsPage";
+import {BasketPage} from "./components/Basket/BasketPage";
+import Login from "./components/Login/Login";
 
-const AppRoutes = [
-  {
-    index: true,
-    element: <Home />
-  },
-  {
-    path: '/counter',
-    element: <Counter />
-  },
-  {
-    path: '/fetch-data',
-    element: <FetchData />
-  },
-  {
-    path: '/products',
-    element: <ProductsPage />
-  }
-];
-
-export default AppRoutes;
+export default function getRoutes(
+    handleLogIn,
+    handleAddToBasket,
+    handleRemoveFromBasket,
+    selectedProducts,
+) {
+    return [
+        {
+            index: true,
+            element: <Home/>,
+        },
+        {
+            path: "/counter",
+            element: <Counter/>,
+        },
+        {
+            path: "/products",
+            element: (
+                <ProductsPage
+                    onAddToBasket={handleAddToBasket}
+                    onRemoveFromBasket={handleRemoveFromBasket}
+                    selectedProducts={selectedProducts}
+                />
+            ),
+        },
+        {
+            path: "/basket",
+            element: <BasketPage selectedProducts={selectedProducts}/>,
+        },
+        {
+            path: "/login",
+            element: <Login onLogin={handleLogIn}/>
+        },
+    ];
+}

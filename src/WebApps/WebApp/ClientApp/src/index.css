@@ -1,0 +1,8 @@
+body {
+    /* Replace 'path-to-your-image' with actual path */
+    background-image: url('../public/images/3d-render-low-poly-plexus-design-network-communications.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}

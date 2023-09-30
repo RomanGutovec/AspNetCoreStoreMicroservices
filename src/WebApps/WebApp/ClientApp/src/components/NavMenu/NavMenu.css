@@ -1,0 +1,53 @@
+﻿.navbar-expand-sm {
+  background: #fff;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.navbar-brand {
+  /*color: #333;*/
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.navbar-nav li {
+  padding: 0 10px;
+}
+
+.navbar-nav .nav-link {
+  /*color: #333;*/
+  transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  /*color: #007bff;*/
+}
+
+.basket-container {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.basket-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: #007bff;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 50%;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: hsl(211, 100%, 50%);
+}
